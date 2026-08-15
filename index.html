@@ -116,19 +116,30 @@
     /* 사진 자리 표시 */
     .photo-note { border: 1px dashed rgba(241,242,238,0.35); }
 
-    /* 원고지 칸 글자 */
-    .wg-row { display: flex; justify-content: center; margin-bottom: 12px; }
-    .wg-row span {
-      width: clamp(27px, 7.4vw, 58px);
-      aspect-ratio: 1 / 1;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(47,83,120,0.45);
-      margin-left: -1px;
-      background: rgba(233,235,230,0.55);
-      font-size: clamp(15px, 4.1vw, 31px);
-      font-family: 'Gowun Batang', serif;
+    /* 원고지 (실물 느낌: 11칸 격자 종이) */
+    .wg-sheet {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      width: min(620px, 92vw);
+      margin: 0 auto;
+      background: #f7f0da;
+      border: 2px solid rgba(198,92,60,0.6);
+      box-shadow: 0 30px 60px -30px rgba(30,35,44,0.4);
+      transform: rotate(-1.5deg);
     }
-    .wg-row span:first-child { margin-left: 0; }
+    .wg-sheet i {
+      aspect-ratio: 1 / 1;
+      border-right: 1px solid rgba(198,92,60,0.4);
+      border-bottom: 1px solid rgba(198,92,60,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-style: normal;
+      font-family: 'Gowun Batang', serif;
+      font-weight: 700;
+      font-size: clamp(13px, 3.3vw, 29px);
+      color: #2b3038;
+    }
+    .wg-sheet i:nth-child(11n) { border-right: none; }
+    .wg-sheet i:nth-last-child(-n+11) { border-bottom: none; }
   </style>
 </head>
 <body class="font-serif text-ink antialiased selection:bg-terra/30">
@@ -368,11 +379,20 @@
   <!-- ═══════════ 9. 마무리 : 도장 ═══════════ -->
   <section class="hanji relative min-h-[90dvh] flex items-center justify-center overflow-hidden">
     <div class="relative z-10 max-w-3xl mx-auto px-6 py-28 text-center">
-      <!-- 원고지 세 줄 -->
-      <div class="font-bold text-ink">
-        <div class="reveal wg-row"><span>올</span><span>가</span><span>을</span><span>,</span></div>
-        <div class="reveal wg-row" style="--d:250ms"><span>소</span><span>설</span><span>로</span><span class="wg-sp"></span><span>다</span><span>시</span><span class="wg-sp"></span><span>이</span><span>어</span><span>지</span><span>는</span></div>
-        <div class="reveal wg-row" style="--d:500ms"><span>우</span><span>리</span><span>를</span><span class="wg-sp"></span><span>기</span><span>다</span><span>립</span><span>니</span><span>다</span><span>.</span></div>
+      <!-- 원고지 한 장 (11칸 × 5줄) -->
+      <div class="reveal">
+        <div class="wg-sheet">
+          <!-- 1줄: 빈 줄 -->
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <!-- 2줄: 올가을, -->
+          <i></i><i></i><i></i><i>올</i><i>가</i><i>을</i><i>,</i><i></i><i></i><i></i><i></i>
+          <!-- 3줄: 소설로 다시 이어지는 -->
+          <i>소</i><i>설</i><i>로</i><i></i><i>다</i><i>시</i><i></i><i>이</i><i>어</i><i>지</i><i>는</i>
+          <!-- 4줄: 우리를 기다립니다. -->
+          <i></i><i>우</i><i>리</i><i>를</i><i></i><i>기</i><i>다</i><i>립</i><i>니</i><i>다</i><i>.</i>
+          <!-- 5줄: 빈 줄 -->
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
       </div>
       <!-- 신청 안내 -->
       <div class="reveal mt-16" style="--d:800ms">
