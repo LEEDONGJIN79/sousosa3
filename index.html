@@ -116,21 +116,19 @@
     /* 사진 자리 표시 */
     .photo-note { border: 1px dashed rgba(241,242,238,0.35); }
 
-    /* 원고지 (실물 느낌: 11칸 격자 종이) */
+    /* 원고지 (실물 구조: 글자 칸 줄 + 사이의 좁은 교정 띠) */
     .wg-sheet {
-      display: grid;
-      grid-template-columns: repeat(11, 1fr);
       width: min(620px, 92vw);
       margin: 0 auto;
       background: #f7f0da;
-      border: 2px solid rgba(198,92,60,0.6);
+      border: 2px solid rgba(198,92,60,0.65);
       box-shadow: 0 30px 60px -30px rgba(30,35,44,0.4);
       transform: rotate(-1.5deg);
     }
-    .wg-sheet i {
+    .wg-cells { display: grid; grid-template-columns: repeat(11, 1fr); }
+    .wg-cells i {
       aspect-ratio: 1 / 1;
-      border-right: 1px solid rgba(198,92,60,0.4);
-      border-bottom: 1px solid rgba(198,92,60,0.4);
+      border-right: 1px solid rgba(198,92,60,0.42);
       display: flex; align-items: center; justify-content: center;
       font-style: normal;
       font-family: 'Gowun Batang', serif;
@@ -138,8 +136,12 @@
       font-size: clamp(13px, 3.3vw, 29px);
       color: #2b3038;
     }
-    .wg-sheet i:nth-child(11n) { border-right: none; }
-    .wg-sheet i:nth-last-child(-n+11) { border-bottom: none; }
+    .wg-cells i:last-child { border-right: none; }
+    .wg-gap {
+      height: clamp(9px, 2.2vw, 18px);
+      border-top: 1px solid rgba(198,92,60,0.42);
+      border-bottom: 1px solid rgba(198,92,60,0.42);
+    }
   </style>
 </head>
 <body class="font-serif text-ink antialiased selection:bg-terra/30">
@@ -382,16 +384,20 @@
       <!-- 원고지 한 장 (11칸 × 5줄) -->
       <div class="reveal">
         <div class="wg-sheet">
-          <!-- 1줄: 빈 줄 -->
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          <!-- 2줄: 올가을, -->
-          <i></i><i></i><i></i><i>올</i><i>가</i><i>을</i><i>,</i><i></i><i></i><i></i><i></i>
-          <!-- 3줄: 소설로 다시 이어지는 -->
-          <i>소</i><i>설</i><i>로</i><i></i><i>다</i><i>시</i><i></i><i>이</i><i>어</i><i>지</i><i>는</i>
-          <!-- 4줄: 우리를 기다립니다. -->
-          <i></i><i>우</i><i>리</i><i>를</i><i></i><i>기</i><i>다</i><i>립</i><i>니</i><i>다</i><i>.</i>
-          <!-- 5줄: 빈 줄 -->
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <!-- 빈 줄 -->
+          <div class="wg-cells"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="wg-gap"></div>
+          <!-- 올가을, -->
+          <div class="wg-cells"><i></i><i></i><i></i><i>올</i><i>가</i><i>을</i><i>,</i><i></i><i></i><i></i><i></i></div>
+          <div class="wg-gap"></div>
+          <!-- 소설로 다시 이어지는 -->
+          <div class="wg-cells"><i>소</i><i>설</i><i>로</i><i></i><i>다</i><i>시</i><i></i><i>이</i><i>어</i><i>지</i><i>는</i></div>
+          <div class="wg-gap"></div>
+          <!-- 우리를 기다립니다. -->
+          <div class="wg-cells"><i></i><i>우</i><i>리</i><i>를</i><i></i><i>기</i><i>다</i><i>립</i><i>니</i><i>다</i><i>.</i></div>
+          <div class="wg-gap"></div>
+          <!-- 빈 줄 -->
+          <div class="wg-cells"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
       <!-- 신청 안내 -->
